@@ -2,7 +2,7 @@
 
 
 @section('content')
-    
+
 <!-- SubHeader =============================================== -->
 <section class="header-video">
     <div id="hero_video">

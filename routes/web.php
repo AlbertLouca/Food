@@ -54,6 +54,7 @@ Route::get('/faq',function (){
                 
                 
  });
+ Route::get('/items/{id}','test@show');
  
 Route::get('/',function (){
 

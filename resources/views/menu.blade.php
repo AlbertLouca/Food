@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="#0">Home</a></li>
                 <li><a href="#0">Category</a></li>
-                <li>Page active</li>
+                <li>{{ Request::path()}}</li>
             </ul>
             <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
         </div>
@@ -29,7 +29,7 @@
 		<div class="row">
         
 			<div class="col-md-3">
-            	<p><a href="list_page.php" class="btn_side">Back to search</a></p>
+            	
 				<div class="box_style_1">
 					<ul id="cat_nav">
 						<li><a href="#starters" class="active">Starters <span>(141)</span></a></li>

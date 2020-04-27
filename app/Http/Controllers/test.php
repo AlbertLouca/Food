@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 
 class test extends Controller
 {
-    public function show(){
-    $user = DB::table( 'user' )->where('FirstName','Albert')->first();
+    public function show($id){
+    $item = DB::table( 'item' )->where('id',$id)->first();
 
-if(!$user){
+if(!$item){
 
 
     abort(404);
 }
 
-    return view('login',[
-'user'=>$user->LastName ]);
+    return 5;
+/** return view('index',[
+'item'=>$item->Description]);  */
 }
 }
