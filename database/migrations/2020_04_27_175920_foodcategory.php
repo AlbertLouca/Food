@@ -17,7 +17,7 @@ class Foodcategory extends Migration
             $table->increments('id');
           
             $table->string('Name');
-            
+            $table->text('Description');
             
         });
     }

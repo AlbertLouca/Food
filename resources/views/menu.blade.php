@@ -27,13 +27,21 @@
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
 		<div class="row">
-        
+		
+			
 			<div class="col-md-3">
             	 
 				<div class="box_style_1">
 					<ul id="cat_nav">
 						@foreach ($foodcategory as $category)
-							<li><a href={{'#'.str_replace(' ', '_', $category->Name)}} class="active">{{$category->Name}} <span>(141)</span></a></li>
+						<?php $counter=0;?>
+						
+						@foreach ($item as $i)
+							@if ($i->CategoryID===$category->id)
+							  <?php $counter=$counter+1; ?>	
+							@endif
+						@endforeach
+							<li><a href={{'#'.str_replace(' ', '_', $category->Name)}} class="active">{{$category->Name}} <span>(<?php echo $counter; ?>)</span></a></li>
 						@endforeach
 						
 						
@@ -82,7 +90,7 @@
 					<tr>
 						<td>
                         	<figure class="thumb_menu_list"><img src="{{$i->Photo}}" alt="thumb"></figure>
-							<h5>{{$i->Name}}</h5>
+							<h5>{{$i->Name}} </h5>
 							<p>
 								{{$i->Description}}
 							</p>
