@@ -54,8 +54,12 @@
 					@foreach ($foodcategory as $category)
 					<h3 class="nomargin_top" id={{str_replace(' ', '_', $category->Name)}}>{{$category->Name}}</h3>
 					<p>
-						Te ferri iisque aliquando pro, posse nonumes efficiantur in cum. Sensibus reprimique eu pro. Fuisset mentitum deleniti sit ea.
-					</p>
+						
+						 Category Description here		</p>
+						
+							
+						
+
 					<table class="table table-striped cart-list">
 					<thead>
 					<tr>
@@ -71,16 +75,20 @@
 					</tr>
 					</thead>
 					<tbody>
+						@foreach ($item as $i)
+						@if ($i->CategoryID!=$category->id)
+							@continue
+						@endif
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/218e32081ed5a1823dd92337e3a7dc09.jpg" alt="thumb"></figure>
-							<h5>1. Mexican Enchiladas</h5>
+                        	<figure class="thumb_menu_list"><img src="{{$i->Photo}}" alt="thumb"></figure>
+							<h5>{{$i->Name}}</h5>
 							<p>
-								Fuisset mentitum deleniti sit ea.
+								{{$i->Description}}
 							</p>
 						</td>
 						<td>
-							<strong>€ 9,40</strong>
+							<strong>{{$i->Price}}</strong>
 						</td>
 						<td class="options">
                         <div class="dropdown dropdown-options">
@@ -108,117 +116,8 @@
                         </div>
                     </td>
 					</tr>
-					<tr>
-						<td>
-                        	<figure class="thumb_menu_list"><img src="img/218e32081ed5a1823dd92337e3a7dc09.jpg" alt="thumb"></figure>
-							<h5>2. Fajitas</h5>
-							<p>
-								Fuisset mentitum deleniti sit ea.
-							</p>
-						</td>
-						<td>
-							<strong>€ 6,80</strong>
-						</td>
-						<td class="options">
-                        <div class="dropdown dropdown-options">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-                            <div class="dropdown-menu">
-                                <h5>Select an option</h5>
-                                <label>
-                                <input type="radio" value="option1" name="options_2" checked>Medium <span>+ $3.30</span>
-                                </label>
-                                <label>
-                                <input type="radio" value="option2" name="options_2" >Large <span>+ $5.30</span>
-                                </label>
-                                <label>
-                                <input type="radio" value="option3" name="options_2" >Extra Large <span>+ $8.30</span>
-                                </label>
-                                <h5>Add ingredients</h5>
-                                <label>
-                                <input type="checkbox" value="">Extra Tomato <span>+ $4.30</span>
-                                </label>
-                                <label>
-                                <input type="checkbox" value="">Extra Peppers <span>+ $2.50</span>
-                                </label>
-                                <a href="#0" class="add_to_basket">Add to cart</a>
-                            </div>
-                        </div>
-                    </td>
-					</tr>
-					<tr>
-						<td>
-                        	<figure class="thumb_menu_list"><img src="img/218e32081ed5a1823dd92337e3a7dc09.jpg" alt="thumb"></figure>
-							<h5>3. Royal Fajitas</h5>
-							<p>
-								Fuisset mentitum deleniti sit ea.
-							</p>
-						</td>
-						<td>
-							<strong>€ 5,70</strong>
-						</td>
-						<td class="options">
-                        <div class="dropdown dropdown-options">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-                            <div class="dropdown-menu">
-                                <h5>Select an option</h5>
-                                <label>
-                                <input type="radio" value="option1" name="options_3" checked>Medium <span>+ $3.30</span>
-                                </label>
-                                <label>
-                                <input type="radio" value="option2" name="options_3" >Large <span>+ $5.30</span>
-                                </label>
-                                <label>
-                                <input type="radio" value="option3" name="options_3" >Extra Large <span>+ $8.30</span>
-                                </label>
-                                <h5>Add ingredients</h5>
-                                <label>
-                                <input type="checkbox" value="">Extra Tomato <span>+ $4.30</span>
-                                </label>
-                                <label>
-                                <input type="checkbox" value="">Extra Peppers <span>+ $2.50</span>
-                                </label>
-                                <a href="#0" class="add_to_basket">Add to cart</a>
-                            </div>
-                        </div>
-                    </td>
-					</tr>
-					<tr>
-						<td>
-                        	<figure class="thumb_menu_list"><img src="img/218e32081ed5a1823dd92337e3a7dc09.jpg" alt="thumb"></figure>
-							<h5>4. Chicken Enchilada Wrap</h5>
-							<p>
-								Fuisset mentitum deleniti sit ea.
-							</p>
-						</td>
-						<td>
-							<strong>€ 5,20</strong>
-						</td>
-						<td class="options">
-                        <div class="dropdown dropdown-options">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-                            <div class="dropdown-menu">
-                                <h5>Select an option</h5>
-                                <label>
-                                <input type="radio" value="option1" name="options_4" checked>Medium <span>+ $3.30</span>
-                                </label>
-                                <label>
-                                <input type="radio" value="option2" name="options_4" >Large <span>+ $5.30</span>
-                                </label>
-                                <label>
-                                <input type="radio" value="option3" name="options_4" >Extra Large <span>+ $8.30</span>
-                                </label>
-                                <h5>Add ingredients</h5>
-                                <label>
-                                <input type="checkbox" value="">Extra Tomato <span>+ $4.30</span>
-                                </label>
-                                <label>
-                                <input type="checkbox" value="">Extra Peppers <span>+ $2.50</span>
-                                </label>
-                                <a href="#0" class="add_to_basket">Add to cart</a>
-                            </div>
-                        </div>
-                    </td>
-					</tr>
+					@endforeach
+					
 					</tbody>
 					</table>
 					<hr>

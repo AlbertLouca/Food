@@ -19,7 +19,7 @@ class Item extends Migration
             $table->string('Name');
             $table->text('Description');
             $table->float('Price');
-            $table->binary('Photo');
+            $table->text('Photo');
         });
     }
 

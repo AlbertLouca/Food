@@ -40,18 +40,15 @@ Route::get('/faq',function (){
             
             
 });
+Route::get('/menu',function (){
 
- Route::get('/menu',function (){
-
 
             
-                return view ('menu',[
-            
-            'foodcategory'=>DB::table( 'foodcategory' )->get()]
-            
-            );
-            
+    return view ('menu',['item'=>DB::table( 'item' )->get(),'foodcategory'=>DB::table( 'foodcategory' )->get() ] );
+
 });
+
+
 
             Route::get('/cart',function (){
 
