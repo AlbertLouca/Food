@@ -43,8 +43,13 @@ Route::get('/faq',function (){
 
  Route::get('/menu',function (){
 
-            return view ('menu');
+
             
+                return view ('menu',[
+            
+            'foodcategory'=>DB::table( 'foodcategory' )->get()]
+            
+            );
             
 });
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class test extends Controller
 {
     public function show($id){
-    $item = DB::table( 'item' )->where('id',$id)->first();
+    $item = DB::table( 'foodcategory' )->where('id',$id)->first();
 
 if(!$item){
 
@@ -15,8 +15,8 @@ if(!$item){
     abort(404);
 }
 
-    return 5;
-/** return view('index',[
-'item'=>$item->Description]);  */
+    //return 5;
+ return view('index',[
+'item'=>$item->Name]);  
 }
 }
