@@ -20,8 +20,7 @@
                 <li><a href="#0">Category</a></li>
                 <li>{{ Request::path()}}</li>
             </ul>
-            <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
-        </div>
+             </div>
     </div><!-- Position -->
 
 <!-- Content ================================================== -->
@@ -91,12 +90,12 @@
 						<td>
                         	<figure class="thumb_menu_list"><img src="{{$i->Photo}}" alt="thumb"></figure>
 							<h5>{{$i->Name}} </h5>
-							<p>
+							<p  style='margin-right:10px;'>
 								{{$i->Description}}
 							</p>
 						</td>
 						<td>
-							<strong>{{$i->Price}}</strong>
+							<strong style='margin-right:10px;'>EGP {{$i->Price}}</strong>
 						</td>
 						<td class="options">
                         <div class="dropdown dropdown-options">
