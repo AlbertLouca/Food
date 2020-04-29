@@ -272,14 +272,41 @@ if(isset($_POST['register']))
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
 				<a href="" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="" class="popup-form" id="myRegister" method="POST">
+				<form class="popup-form"method="POST" action="{{ route('register') }}">
+                @csrf
                 	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" name="FirstName" placeholder="First Name" required >
-                    <input type="text" class="form-control form-white" name="LastName" placeholder="Last Name" required >
-                    <input type="text" class="form-control form-white" name="PhoneNumber" placeholder="Phone Number" required >
-                    <input type="email" class="form-control form-white"name="Email" placeholder="Email" required >
-                    <input type="password" class="form-control form-white" name="Password" placeholder="Password"  id="password1" required >
-                    <input type="password" class="form-control form-white" name="ConfirmPassword" placeholder="Confirm password"  id="password2" required >
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="First Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror                   
+                    <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" placeholder="Last Name" name="lname" value="{{ old('lname') }}" required autocomplete="lname">
+                    @error('lname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <input type="tel"  class="form-control @error('number') is-invalid @enderror" name="number" value="{{ old('number') }}" required autocomplete="number" placeholder="Phone Number" >
+                    @error('number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="E-mail" >
+                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+
+                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                     <label for="Gender">Choose your Gender:</label>
                     <select class="form-control form-white" name="Gender" id="Gender">
                         <option style='color:black' value="M">Male</option>
