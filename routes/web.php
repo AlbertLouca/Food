@@ -44,7 +44,7 @@ Route::get('/menu',function (){
 
 
             
-    return view ('menu',['item'=>DB::table( 'item' )->get(),'foodcategory'=>DB::table( 'foodcategory' )->get() ] );
+    return view ('menu',['item'=>DB::table( 'item' )->get(),'foodcategory'=>DB::table( 'foodcategory' )->get(),'extra'=>DB::table('extra')->get() ] );
 
 });
 

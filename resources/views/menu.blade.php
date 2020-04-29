@@ -62,7 +62,7 @@
 					<h3 class="nomargin_top" id={{str_replace(' ', '_', $category->Name)}}>{{$category->Name}}</h3>
 					<p>
 						
-						 Category Description here		</p>
+						 {{$category->Description}}		</p>
 						
 							
 						
@@ -70,10 +70,10 @@
 					<table class="table table-striped cart-list">
 					<thead>
 					<tr>
-						<th>
+						<th width='600px'>
 							 Item
 						</th>
-						<th>
+						<th >
 							 Price
 						</th>
 						<th>
@@ -81,12 +81,13 @@
 						</th>
 					</tr>
 					</thead>
-					<tbody>
+					
 						@foreach ($item as $i)
 						@if ($i->CategoryID!=$category->id)
 							@continue
 						@endif
-					<tr>
+						<tbody>
+					  <tr>
 						<td>
                         	<figure class="thumb_menu_list"><img src="{{$i->Photo}}" alt="thumb"></figure>
 							<h5>{{$i->Name}} </h5>
@@ -101,6 +102,7 @@
                         <div class="dropdown dropdown-options">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
                             <div class="dropdown-menu">
+								{{--  
                                 <h5>Select an option</h5>
                                 <label>
                                 <input type="radio" value="option1" name="options_1" checked>Medium <span>+ $3.30</span>
@@ -110,14 +112,20 @@
                                 </label>
                                 <label>
                                 <input type="radio" value="option3" name="options_1" >Extra Large <span>+ $8.30</span>
-                                </label>
-                                <h5>Add ingredients</h5>
-                                <label>
-                                <input type="checkbox" value="">Extra Tomato <span>+ $4.30</span>
-                                </label>
-                                <label>
-                                <input type="checkbox" value="">Extra Peppers <span>+ $2.50</span>
-                                </label>
+								</label>
+								--}}
+                                <h5> extra</h5>
+                                
+									@foreach ($extra as $ex)
+										@if ($ex->ItemID==$i->id)
+										<label>	
+									
+								
+                                <input type="checkbox" value="{{$ex->Name}}">{{$ex->Name}} <span style='margin-left:40px;'> +EGP {{$ex->Price}}</span>
+								</label>
+									@endif
+									@endforeach
+                               
                                 <a href="#0" class="add_to_basket">Add to cart</a>
                             </div>
                         </div>
