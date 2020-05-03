@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <?php 
+    
+    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +36,7 @@
 	
 	<!-- YOUR CUSTOM CSS -->
 	<link href="/css/custom.css" rel="stylesheet">
-    
+   
     <!-- Modernizr -->
 	<script src="js/modernizr.js"></script> 
 </head>

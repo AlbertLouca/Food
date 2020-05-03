@@ -23,7 +23,7 @@
             </form>
         </div><!-- End sub_content -->
     </div>
-    <img src="img/video_fix.png" alt="" class="header-video--media" data-video-src="" data-teaser-source="video/intro" data-provider="" data-video-width="1920" data-video-height="960">
+    <img src="/img/video_fix.png" alt="" class="header-video--media" data-video-src="" data-teaser-source="video/intro" data-provider="" data-video-width="1920" data-video-height="960">
     
     </section><!-- End Header video -->
     <!-- End SubHeader ============================================ -->

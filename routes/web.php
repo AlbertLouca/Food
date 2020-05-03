@@ -20,6 +20,7 @@ Route::get('/about',function (){
     
 });
 
+route::get('/tester','OrderController@index');
 Route::get('/cart/finish',function (){
 
         return view ('finish');
@@ -44,9 +45,11 @@ Route::get('/menu',function (){
 
 
             
-    return view ('menu',['item'=>DB::table( 'item' )->get(),'foodcategory'=>DB::table( 'foodcategory' )->get(),'extra'=>DB::table('extra')->get() ] );
+    return view ('menu',['item'=>DB::table( 'items' )->get(),'foodcategory'=>DB::table( 'foodcategory' )->get(),'extra'=>DB::table('extra')->get() ] );
 
 });
+
+Route::get('/additem/{item}','OrderController@add')->name('addtocart');
 
 
 

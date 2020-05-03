@@ -1,7 +1,9 @@
 @extends('layout')
 @section('content')
 
-    
+<?php
+use App\item; 
+?>
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" data-parallax="scroll" data-image-src="img/Angelic_Grilled_Peach_Prosciutto_Arugula_Balsamic_Pizza_recipe-1200x600-min.jpg" data-natural-width="1200" data-natural-height="600">
     <div id="subheader">
@@ -59,6 +61,7 @@
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
 					@foreach ($foodcategory as $category)
+					
 					<h3 class="nomargin_top" id={{str_replace(' ', '_', $category->Name)}}>{{$category->Name}}</h3>
 					<p>
 						
@@ -83,6 +86,19 @@
 					</thead>
 					
 						@foreach ($item as $i)
+						<?php  $im=new item();
+						 $im->Name=$i->Name;
+						 $im->id=$i->id;
+						 $im->Description=$i->Description;
+						 $im->Price=$i->Price;
+						 $im->img=$i->Photo;
+						 $im->CategoryID=$category->id;
+						//$im->Name=$i->Name ;
+						//$im->
+						//die(gettype($im->CategoryID));
+						
+						
+						?>
 						@if ($i->CategoryID!=$category->id)
 							@continue
 						@endif
@@ -124,9 +140,12 @@
                                 <input type="checkbox" value="{{$ex->Name}}">{{$ex->Name}} <span style='margin-left:40px;'> +EGP {{$ex->Price}}</span>
 								</label>
 									@endif
+								
+									
+									
 									@endforeach
-                               
-                                <a href="#0" class="add_to_basket">Add to cart</a>
+								 <?php echo $im->Name; ?>
+                                <a href= {{ route('addtocart',['item'=> $im->id]) }} class="add_to_basket">Add to cart</a>
                             </div>
                         </div>
                     </td>

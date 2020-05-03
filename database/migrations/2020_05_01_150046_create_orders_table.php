@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Orders extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,7 +22,6 @@ class Orders extends Migration
              $table->text('Description');
             $table->string('Status');
             $table->float('Total');
-          
         });
     }
 
@@ -34,6 +33,5 @@ class Orders extends Migration
     public function down()
     {
         Schema::dropIfExists('orders');
-        //
     }
 }
