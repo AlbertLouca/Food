@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Auth;
+use Hash;
+use Socialite;
+use Str;
 class LoginController extends Controller
 {
     /*
@@ -37,4 +40,22 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+
+public function google()
+    {
+        /**
+         * Send the user req to github
+         */
+        return Socialite::driver('google')->rediect();
+    }
+
+ public function googleRedirect()
+    {
+        /***
+         * gets oauth back from github
+         */
+    }
+
 }
