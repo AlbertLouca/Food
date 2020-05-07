@@ -35,7 +35,7 @@ use App\item;
 				<div class="box_style_1">
 					<ul id="cat_nav">
 						@foreach ($foodcategory as $category)
-						<?php $counter=0;?>
+						<?php $counter=0  ?>
 						
 						@foreach ($item as $i)
 							@if ($i->CategoryID===$category->id)
@@ -56,7 +56,7 @@ use App\item;
 					<small>Monday to Friday 9.00am - 7.30pm</small>
 				</div>
 			</div><!-- End col-md-3 -->
-            
+            <?php  ?>
 			<div class="col-md-6">
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
@@ -86,18 +86,14 @@ use App\item;
 					</thead>
 					
 						@foreach ($item as $i)
-						<?php  $im=new item();
-						 $im->Name=$i->Name;
-						 $im->id=$i->id;
-						 $im->Description=$i->Description;
-						 $im->Price=$i->Price;
-						 $im->img=$i->Photo;
-						 $im->CategoryID=$category->id;
+						<?php  $im=new item($i);
+						
+						 ;
 						//$im->Name=$i->Name ;
 						//$im->
 						//die(gettype($im->CategoryID));
-						
-						
+						$order=Session::has('order') ? Session::get('order') :null;
+						//if ($order) die($order->items[0]->Name .$order->items[0]->CategoryID );
 						?>
 						@if ($i->CategoryID!=$category->id)
 							@continue
@@ -144,7 +140,7 @@ use App\item;
 									
 									
 									@endforeach
-								 <?php echo $im->Name; ?>
+								 
                                 <a href= {{ route('addtocart',['item'=> $im->id]) }} class="add_to_basket">Add to cart</a>
                             </div>
                         </div>
@@ -164,77 +160,55 @@ use App\item;
             <div class="theiaStickySidebar">
 				<div id="cart_box" >
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
+				
+						
+					
 					<table class="table table_summary">
+						<?php $total=0; ?>
+						@if ($order)
+							
+						
+							@foreach ($order->items as $orderitem)
 					 <tbody>
 					  <tr>
 						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Fajitas
+							<a href= {{ route('removefromcart',['item'=> $orderiem->id]) }} class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> {{$orderitem->Name}}
 						</td>
 						<td>
-							<strong class="pull-right">$11</strong>
+						<strong class="pull-right">EGP {{$orderitem->Price}}</strong> <?php $total = $total + $orderitem->Price ?>  
 						</td>
 					  </tr>
-				 	 <tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-						</td>
-						<td>
-							<strong class="pull-right">$14</strong>
-						</td>
-					 </tr>
-					 <tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Taco
-						</td>
-						<td>
-							<strong class="pull-right">$2</strong>
-						</td>
-					 </tr>
-					 <tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-						</td>
-						<td>
-							<strong class="pull-right">$9</strong>
-						</td>
-					 </tr>
-					 <tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-						</td>
-						<td>
-							<strong class="pull-right">$12</strong>
-						</td>
-					 </tr>
+					  @endforeach
+				 	
 					 </tbody>
 					 </table>
-				 	 <hr>
-				    	<div class="row" id="options_2">
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label><input type="radio" value="" checked name="option_2" class="icheck">Delivery</label>
-						</div>
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label><input type="radio" value="" name="option_2" class="icheck">Take Away</label>
-						</div>
-					 </div><!-- Edn options 2 -->
+				 	
+				    	
                     
-					  <hr>
+					  <hr> <hr>
 				    	<table class="table table_summary">
 				    	<tbody>
 				     	<tr>
 						<td>
-							 Subtotal <span class="pull-right">$56</span>
+							 Subtotal <span class="pull-right"> EGP <?php echo $total ?> </span>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							 Delivery fee <span class="pull-right">$10</span>
+							 Delivery fee <span class="pull-right"> EGP <?php  echo '15';$total=$total+10 ; ?></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="total">
-							 TOTAL <span class="pull-right">$48</span>
+							 TOTAL <span class="pull-right"> EGP <?php echo $total ;?> </span>
 						</td>
+						
+						@else
+						<tr>
+							<td class="" >
+								Your Cart is empty
+							</td>
+						@endif
 					</tr>
 					</tbody>
 					</table>
@@ -247,4 +221,15 @@ use App\item;
 		</div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
+<script>
+function remove_item(){
+alert('test');
+
+
+
+
+}
+
+
+</script>
 @endsection

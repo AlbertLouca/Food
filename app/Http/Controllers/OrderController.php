@@ -39,17 +39,25 @@ public function add($id){
 //$a= new item($item->Name,$item->Description,$item->Price,$item->Photo);
 
 $oldorder=Session::has('order') ? Session::get('order') :null;
-$order= new order();
+if ($oldorder){
+ $order=$oldorder;   
+}
+else {$order= new order();
+}
+
+//echo $order->status;
+
 //echo $i->Photo;
-$item= new item();
-$item->id=$i->id;
-$item->Name=$i->Name;
-$item->Description=$i->Description;
-$item->img=$i->Photo;
-$item->Price=$i->Price;
+$item= new item($i);
+
+
+//var_dump($item);
+//echo"=============================================";
 //$item->CategoryID=$i->CategoryID;   // msh mawgoudddddd ====================
 $order->additem($item);
-die($order->items[0]->Name);
+//echo $order->items[0]->id;
+//var_dump($order);
+Session::put('order', $order);
 //$request->session()->put('order',$order);
 //dd($request->session()->get('order'));
 return redirect('/menu');

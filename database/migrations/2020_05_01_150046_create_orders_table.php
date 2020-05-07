@@ -16,9 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('CustomerID');
+            $table->foreign('CustomerID')->references('id')->on('user');
             $table->timestamp('OrderingTime');
            $table->integer('Rating');
            $table->integer('AddressID');
+           $table->foreign('AddressID')->references('id')->on('address');
              $table->text('Description');
             $table->string('Status');
             $table->float('Total');

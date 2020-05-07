@@ -7,13 +7,20 @@ use Illuminate\Support\Arr;
 class order extends Model
 {
     //
-    protected $id ;
-    protected $status='preparing';
-    protected $ordering_time;
-    protected $estimated_time;
-    protected $items = [] ;
-    protected $description;
+    public $id ;
+    public $status='preparing';
+    public $ordering_time;
+    public $estimated_time;
+    public $items = [] ;
+    public $description;
 
+   public function __construct(){
+
+
+//echo $this->status;
+
+
+   }
 
     public function additem($item)
     {
@@ -21,7 +28,7 @@ class order extends Model
       
             array_push($this->items,$item);
        // echo $item;
-       // echo $this->items[0];
+        //echo $this->status;
 
       
         

@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class item extends Model
 {
     
-    protected $id;
-    protected $CategoryID;
-    protected $Name;
-    protected $Description;
-    protected $Price;
-    protected $img;
+    public $id;
+    public $CategoryID;
+    public $Name;
+    public $Description;
+    public $Price;
+    public $img;
 
-    protected $fillable = [
-         'Name', 'Description','Price','Photo'];
-         protected $hidden = ['id','CategoryID'];
+    protected $fillable = ['id','CategoryID','Name', 'Description','Price','Photo'];
+        
      /* public function __construct($name ,$price){
 
             $this->Name=$name;
@@ -31,9 +30,22 @@ public function __construct ($id){
    // $this->Description=$description;
    // $this->Price=$price;
    // $this->img=$photo;
- 
+}
  */ 
+public function __construct($i){
 
+
+    $this->id=$i->id;
+    $this->CategoryID=$i->CategoryID;
+    $this->Name=$i->Name;
+    $this->Description=$i->Description;
+    $this->img=$i->Photo;
+    $this->Price=$i->Price;
+
+
+
+
+}
 
 
  
