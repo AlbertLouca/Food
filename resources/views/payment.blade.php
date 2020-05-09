@@ -201,7 +201,7 @@
 					</tbody>
 					</table>
 					<hr>
-					<a class="btn_full" href="/finish">Confirm your order</a>
+					<a class="btn_full" href="/cart/finish">Confirm your order</a>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
