@@ -37,5 +37,6 @@ class Address extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('address');
     }
 }

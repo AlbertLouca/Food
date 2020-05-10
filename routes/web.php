@@ -77,3 +77,11 @@ return view ('index');
 
 });
 */
+
+Route::get('/login/facebook', 'SocialAuthFacebookController@redirect');
+Route::get('/login/facebook/callback', 'SocialAuthFacebookController@callback');
+
+Auth::routes();
+Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/callback', 'SocialAuthGoogleController@callback');
+Route::get('/home', 'HomeController@index')->name('home');

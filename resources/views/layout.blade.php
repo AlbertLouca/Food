@@ -11,6 +11,7 @@
     <meta name="keywords" content="pizza, delivery food, fast food, sushi, take away, chinese, italian food">
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
+    <meta name="google-signin-client_id" content="450608271940-h4r6u2tk5su5ng0jp953ppc3hn1b29fv.apps.googleusercontent.com">
     <title>QuickFood - Quality delivery or take away food</title>
 
     <!-- Favicons-->
@@ -22,6 +23,8 @@
     
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/api.js" ></script>
 
     <!-- BASE CSS -->
     <link href="/css/animate.min.css" rel="stylesheet">
@@ -38,7 +41,15 @@
 	<link href="/css/custom.css" rel="stylesheet">
    
     <!-- Modernizr -->
-	<script src="js/modernizr.js"></script> 
+	<script src="js/modernizr.js"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+
+
 </head>
 
 
@@ -224,16 +235,49 @@ if(isset($_POST["login"])){
 			<div class="modal-content modal-popup">
                 <a href="" class="close-link"><i class="icon_close_alt2"></i></a>
        
-				<form action="" method="POST" class="popup-form" id="myLogin">
-                	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="Email" name='Email' class="form-control form-white" placeholder="Email">
-                    <input type="password"name='Password' class="form-control form-white" placeholder="Password">
+				<form method="POST" action="{{ route('login') }}" class="popup-form">
+                @csrf
+                    <div class="login_icon"><i class="icon_lock_alt"></i></div>
+					<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"  placeholder="Email" autofocus>
+                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"  placeholder="Password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                     
-					<div class="text-middle">
-						<a href="#">Forgot Password?</a>
-					</div>
-					<button type="submit"  name='login' class="btn btn-submit">Submit</button>
-				</form>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                               
+
+                        
+                                <button type="submit" class="btn btn-submit">
+                                    {{ __('Login') }}
+                                </button>
+
+                                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+<div class="g-signin2">
+<a href="{{ url('/redirect') }}" class="btn btn-primary">Login With Google</a>             
+ <a href="{{url('/login/facebook')}}" class="btn btn-primary">Login with Facebook</a>
+                                </div>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                           
+                </form>
 			</div>
 		</div>
 	</div><!-- End modal -->   
@@ -276,14 +320,29 @@ if(isset($_POST['register']))
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
 				<a href="" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="" class="popup-form" id="myRegister" method="POST">
+				<form class="popup-form"method="POST" action="{{ route('register') }}">
+                @csrf
                 	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" name="FirstName" placeholder="First Name" required >
-                    <input type="text" class="form-control form-white" name="LastName" placeholder="Last Name" required >
-                    <input type="text" class="form-control form-white" name="PhoneNumber" placeholder="Phone Number" required >
-                    <input type="email" class="form-control form-white"name="Email" placeholder="Email" required >
-                    <input type="password" class="form-control form-white" name="Password" placeholder="Password"  id="password1" required >
-                    <input type="password" class="form-control form-white" name="ConfirmPassword" placeholder="Confirm password"  id="password2" required >
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror                   
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="E-mail" >
+                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+
+                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                     <label for="Gender">Choose your Gender:</label>
                     <select class="form-control form-white" name="Gender" id="Gender">
                         <option style='color:black' value="M">Male</option>
