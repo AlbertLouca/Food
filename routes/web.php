@@ -20,7 +20,7 @@ Route::get('/about',function (){
     
 });
 
-Route::get('/cart/finish',function (){
+Route::get('/finish',function (){
 
         return view ('finish');
         
@@ -33,37 +33,58 @@ Route::get('/faq',function (){
         
         
 });
+Route::get('/cart/create','AddressControler@create');
+Route::post('/cart','AddressControler@store')->name('cart');
 
-        Route::get('/cart/payment',function (){
 
-            return view ('payment');
-            
-            
-});
-Route::get('/menu',function (){
+
+
+// Route::post('','AddressControler@store')->name('payment1');
+ Route::get('/payment/create','PaymentController@create');
+Route::post('/payment','PaymentController@store')->name('payment');
+
+
+
+Route::any('/menu',function (){
 
 
             
     return view ('menu',['item'=>DB::table( 'item' )->get(),'foodcategory'=>DB::table( 'foodcategory' )->get() ] );
 
-});
+})->name('menu');
 
 
+//Route::post('/cart','AddressControler@store')->name('cart');
 
-            Route::get('/cart',function (){
+          /*Route::get('/cart',function (){
 
                 return view ('cart');
                 
                 
- });
+ });*/
  Route::get('/items/{id}','test@show');
  
 Route::get('/',function (){
 
 return view ('index');
 
-
 });
+
+//Route::resource('address','AddressControler');
+
+
+
+
+
+//Route::post('cart','AddressControler@index');
+
+
+    
+
+
+//Route::post("/address","AdressControler@create");
+
+
 
 
 /*Route::get('/profile/{name}', function () {

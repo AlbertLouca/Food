@@ -65,6 +65,8 @@ return view('cart/create');
 $request->session()->put('data',$request->input());
 
 // $value = $request->session()->get('data', 'default')['City'];
+      // $value = $request->session()->get('data');
+
 
 
     return redirect()->intended('payment/create');

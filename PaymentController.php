@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Payment;
+use App\Address;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,16 +57,25 @@ $card->ExpireMonth = $request->ExpireMonth;
 $card->ExpireYear = $request->ExpireYear;
 $card->SecurityCode = $request->SecurityCode;
 $card->save();
+//it works but it needs a table
+$address= new Address;
+$address->StreetName=$request->session()->get('data', 'default')['StreetName'];
+$address->StreetName =  $request->session()->get('data', 'default')['StreetName'];
+$address->Area = $request->session()->get('data', 'default')['Area'];
+$address->BuildingNo = $request->session()->get('data', 'default')['BuildingNo'];
+$address->Floor =  $request->session()->get('data', 'default')['Floor'];
+$address->City = $request->session()->get('data', 'default')['City'];
+$address->Landmark = $request->session()->get('data', 'default')['Landmark'];
+//pull retreives data and also clear it from the session
+$address->save();
+
 //DB::insert('insert into payments (CardName, CardNumber,ExpireMonth,ExpireYear,SecurityCode) values (?,?,?,?,?)', [ $request->CardName,$request->CardNumber,$request->ExpireMonth,$request->ExpireYear,$request->SecurityCode]);
-
-
-
 
   return redirect()->intended('finish');
 
-
  }
-    public function show($id)
+
+ public function show($id)
     {
         //
     }
