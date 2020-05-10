@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use App\Payment;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
+
 
 class PaymentController extends Controller
 {
@@ -44,6 +48,17 @@ class PaymentController extends Controller
 'SecurityCode'=>'required|numeric',
 
    ]);
+$card = new Payment;
+$card->CardName = $request->CardName;
+$card->CardNumber= $request->CardNumber;
+$card->ExpireMonth = $request->ExpireMonth;
+$card->ExpireYear = $request->ExpireYear;
+$card->SecurityCode = $request->SecurityCode;
+$card->save();
+//DB::insert('insert into payments (CardName, CardNumber,ExpireMonth,ExpireYear,SecurityCode) values (?,?,?,?,?)', [ $request->CardName,$request->CardNumber,$request->ExpireMonth,$request->ExpireYear,$request->SecurityCode]);
+
+
+
 
   return redirect()->intended('finish');
 
