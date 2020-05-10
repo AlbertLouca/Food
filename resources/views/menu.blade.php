@@ -3,6 +3,8 @@
 
 <?php
 use App\item; 
+use App\selectedfood;
+
 ?>
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" data-parallax="scroll" data-image-src="img/Angelic_Grilled_Peach_Prosciutto_Arugula_Balsamic_Pizza_recipe-1200x600-min.jpg" data-natural-width="1200" data-natural-height="600">
@@ -18,9 +20,9 @@ use App\item;
     <div id="position">
         <div class="container">
             <ul>
-                <li><a href="#0">Home</a></li>
-                <li><a href="#0">Category</a></li>
-                <li>{{ Request::path()}}</li>
+                <li><a href="/home">Home</a></li>
+                
+                <li><a href='/menu'>{{ ucfirst(Request::path())}}</a></li>
             </ul>
              </div>
     </div><!-- Position -->
@@ -161,8 +163,9 @@ use App\item;
 				<div id="cart_box" >
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
 				
-						
-					
+				
+				
+				
 					<table class="table table_summary">
 						<?php $total=0; ?>
 						@if ($order)
@@ -170,12 +173,13 @@ use App\item;
 						
 							@foreach ($order->items as $orderitem)
 					 <tbody>
-					  <tr>
+					  <tr> 
+						  <!-- orderitem= object of type selected food -->
 						<td>
-							<a href= {{ route('removefromcart',['item'=> $orderiem->id]) }} class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> {{$orderitem->Name}}
+						<a href={{ route('removefromcart',['item'=> $orderitem->id]) }} class="remove_item"><i class="icon_minus_alt"></i></a> <strong> {{$orderitem->Quantity}} x</strong> {{$orderitem->Name}}
 						</td>
 						<td>
-						<strong class="pull-right">EGP {{$orderitem->Price}}</strong> <?php $total = $total + $orderitem->Price ?>  
+						<strong class="pull-right">EGP {{$orderitem->Price*$orderitem->Quantity}}</strong> <?php $total = $total + $orderitem->Quantity*$orderitem->Price ?>  
 						</td>
 					  </tr>
 					  @endforeach
@@ -195,7 +199,7 @@ use App\item;
 					</tr>
 					<tr>
 						<td>
-							 Delivery fee <span class="pull-right"> EGP <?php  echo '15';$total=$total+10 ; ?></span>
+							 Tax 24% <span class="pull-right"> EGP <?php echo $total*0.24;$total=$total+($total*0.24) ; ?></span>
 						</td>
 					</tr>
 					<tr>

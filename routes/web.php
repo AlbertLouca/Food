@@ -50,7 +50,7 @@ Route::get('/menu',function (){
 });
 
 Route::get('/additem/{item}','OrderController@add')->name('addtocart');
-
+Route::get('/removeitem/{item}','OrderController@remove')->name('removefromcart');
 
 
             Route::get('/cart',function (){

@@ -16,6 +16,7 @@ class Extra extends Migration
         Schema::create('extra', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ItemID');
+            $table->foreign('ItemID')->references('id')->on('items');
             $table->string('Name');
             $table->string('Price');
             
