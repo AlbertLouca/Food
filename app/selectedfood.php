@@ -8,35 +8,41 @@ class selectedfood extends Model
 {
     
 public $id;
+public $ItemID;
 public $Price;
 public $Name;
 public $Quantity;
 protected $fillable = ['id','CategoryID','Name', 'Description','Price','Photo'];
        
-public function __construct($id){
+public function __construct($item){
 
-    if ($id=-1){
-
-        $Quantity=0;
-    }
-    else {
-$detail=DB::table('items')->where('id',$id)->first();
-$this->Name=$detail->Name;
-$this->Price=$detail->Price;
-
-    }
    
+$this->id=$item->id;
+$this->Name=$item->Name;
+
+$this->Price=$item->Price;
+$this->ItemID=$item->id;
+$this->Quantity=1;
+    
+  // die($this->Price);
 }
 
 
 public function sum(){
 
-return $price*$Quantity;
+return $this->price*$this->Quantity;
 
 }
-public function add(){
 
-$Quantity=$Quantity+1;
+public function increase(){
+
+    $this->Quantity=$this->Quantity+1;
+
+
+}
+public function decrease(){
+ 
+$this->Quantity=$this->Quantity-1;
 
 
 }

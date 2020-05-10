@@ -16,6 +16,7 @@ class Selectedfood extends Migration
         Schema::create('selectedfood', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('OrderID');
+            $table->foreign('OrderID')->references('id')->on('orders');
             $table->string('Name');
             $table->float('Price');
             $table->integer('Quantity');

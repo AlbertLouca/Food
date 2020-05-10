@@ -26,10 +26,7 @@ public function __construct ($id){
 
    $dummy= DB::table( 'items' )->where('id',$id)->first();
     $this->Name=$dummy->Name;
-    
-   // $this->Description=$description;
-   // $this->Price=$price;
-   // $this->img=$photo;
+   
 }
  */ 
 public function __construct($i){

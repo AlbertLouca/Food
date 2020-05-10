@@ -16,7 +16,9 @@ class Selectedextra extends Migration
         Schema::create('selectedextra', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FoodID');
+            $table->foreign('FoodID')->references('id')->on('items');
             $table->integer('extraID');
+            $table->foreign('extraID')->references('id')->on('extra');
             });
     }
 
