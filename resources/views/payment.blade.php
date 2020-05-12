@@ -2,7 +2,7 @@
 @section('content')
 
     
-<!-- SubHeader =============================================== -->
+<!-- SubHeader =============================================== -->b
 <section class="parallax-window"  id="short"  data-parallax="scroll" data-image-src="/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
@@ -90,6 +90,7 @@
 										<input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="mm">
 									</div>
 								</div>
+						
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
 										<input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="yyyy">
@@ -115,9 +116,96 @@
 					</div><!--End row -->
 					<div class="payment_select" id="paypal">
 						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with paypal</label>
+						<div id="paypal-button"></div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+  paypal.Button.render({
+  
+    env: 'sandbox',
+    client: {
+      sandbox: 'AZcSkGco490mar6LEiMpWMIzYtQ_BkJh77vuXr1mMFABdWrHU4FaeYv9t4AczaEy4Hht38pIrlRRD176',
+      production: 'demo_production_client_id'
+    },
+   
+    locale: 'en_US',
+    style: {
+      size: 'large',
+      color: 'gold',
+	  shape: 'rect',
+	  fundingicons: 'true',
+    },
+
+  
+    commit: true,
+
+	payment: function(data, actions) {
+  return actions.payment.create({
+    transactions: [{
+      amount: {
+        total: '30.11',
+        currency: 'USD',
+        details: {
+          subtotal: '30.00',
+          tax: '0.07',
+          shipping: '0.03',
+          handling_fee: '1.00',
+          shipping_discount: '-1.00',
+          insurance: '0.01'
+        }
+      },
+      description: 'The payment transaction description.',
+      custom: '90048630024435',
+      payment_options: {
+        allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
+      },
+      soft_descriptor: 'ECHI5786786',
+      item_list: {
+        items: [
+        {
+          name: 'hat',
+          description: 'Brown hat.',
+          quantity: '5',
+          price: '3',
+          tax: '0.01',
+          sku: '1',
+          currency: 'USD'
+        },
+        {
+          name: 'handbag',
+          description: 'Black handbag.',
+          quantity: '1',
+          price: '15',
+          tax: '0.02',
+          sku: 'product34',
+          currency: 'USD'
+        }],
+        shipping_address: {
+          recipient_name: 'Brian Robinson',
+          line1: '4th Floor',
+          line2: 'Unit #34',
+          city: 'San Jose',
+          country_code: 'US',
+          postal_code: '95131',
+          phone: '011862212345678',
+          state: 'CA'
+        }
+      }
+    }],
+    note_to_payer: 'Contact us for any questions on your order.'
+  });
+},
+    onAuthorize: function(data, actions) {
+      return actions.payment.execute().then(function() {
+       
+        window.alert('Thank you for your purchase!');
+      });
+    }
+  }, '#paypal-button');
+
+</script>
 					</div>
 					<div class="payment_select nomargin">
-						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
+						<label><input type ="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
 						<i class="icon_wallet"></i>
 					</div>
 				</div><!-- End box_style_1 -->
@@ -201,7 +289,7 @@
 					</tbody>
 					</table>
 					<hr>
-					<a class="btn_full" href="/cart/finish">Confirm your order</a>
+					<a class="btn_full" href="/finish">Confirm your order</a>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
