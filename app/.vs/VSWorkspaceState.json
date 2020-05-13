@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Http\\Controllers",
+    "\\app\\Http\\Middleware",
+    "\\database",
+    "\\database\\factories",
+    "\\database\\migrations",
+    "\\storage",
+    "\\storage\\framework"
+  ],
+  "PreviewInSolutionExplorer": false
+}
