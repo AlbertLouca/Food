@@ -14,16 +14,14 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-                     //$table->increments('id');
-               $table->id();
-
-            $table->unsignedinteger('CustomerID');
+            $table->increments('id');
+            $table->integer('CustomerID');
             $table->foreign('CustomerID')->references('id')->on('users');
             $table->timestamp('OrderingTime');
-            $table->integer('Rating');
-            $table->unsignedinteger('AddressID');
-            $table->foreign('AddressID')->references('id')->on('addresses');
-            $table->text('Description');
+           $table->integer('Rating');
+           $table->integer('AddressID');
+           $table->foreign('AddressID')->references('id')->on('address');
+             $table->text('Description');
             $table->string('Status');
             $table->float('Total');
         });
