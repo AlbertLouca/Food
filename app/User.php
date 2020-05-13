@@ -36,4 +36,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+ public function routeNotificationForNexmo($notification)
+    {
+        return '201119587845';
+    }
+
+public function address(){
+
+ return $this->hasMany('App\Address','CustomerID');
+
+}
+
+public function order(){
+
+ return $this->hasMany('App\order','CustomerID');
+
+}
+
 }
