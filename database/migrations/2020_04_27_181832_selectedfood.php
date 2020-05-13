@@ -13,11 +13,9 @@ class Selectedfood extends Migration
      */
     public function up()
     {
-        Schema::create('selectedfoods', function (Blueprint $table) {
+        Schema::create('selectedfood', function (Blueprint $table) {
             $table->increments('id');
-           // $table->integer('OrderID');
-           // $table->foreign('OrderID')->references('id')->on('orders');
-       $table->unsignedBigInteger('OrderID');
+            $table->integer('OrderID');
             $table->foreign('OrderID')->references('id')->on('orders');
             $table->string('Name');
             $table->float('Price');
@@ -32,7 +30,7 @@ class Selectedfood extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('selectedfoods');
+        Schema::dropIfExists('selectedfood');
         //
     }
 }

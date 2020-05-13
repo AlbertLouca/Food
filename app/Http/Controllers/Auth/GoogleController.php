@@ -115,4 +115,3 @@ class GoogleController extends Controller
     }
 
 }
-?>

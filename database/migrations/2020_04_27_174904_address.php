@@ -16,7 +16,7 @@ class Address extends Migration
 
 
         
-  Schema::create('addresses', function (Blueprint $table) {
+  Schema::create('address', function (Blueprint $table) {
     $table->increments('id');
     $table->integer('CustomerID');
     $table->string('City');
@@ -38,6 +38,6 @@ class Address extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('address');
     }
 }

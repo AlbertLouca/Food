@@ -7,16 +7,12 @@ use Illuminate\Support\Arr;
 class order extends Model
 {
     //
-   // public $id ;
+    public $id ;
     public $status='preparing';
     public $ordering_time;
     public $estimated_time;
     public $items = [] ;
     public $description;
-    public $total;
-    //public $Rating;
-protected $fillable = ['Description','Status','Total','OrderingTime'];
-protected $hidden = ['id','CustomerID','AddressID'];
 
    public function __construct(){
 
@@ -37,9 +33,5 @@ protected $hidden = ['id','CustomerID','AddressID'];
       
         
     }
-public function address()
-{
-    return $this->belongsTo('App\Address', 'AddressID');
-}
 
 }
