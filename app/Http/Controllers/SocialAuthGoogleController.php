@@ -21,8 +21,9 @@ class SocialAuthGoogleController extends Controller
     {
         try {
             
-        
-            $googleUser = Socialite::driver('google')->user();
+      
+           $googleUser = Socialite::driver('google')->user();
+
             $existUser = User::where('email',$googleUser->email)->first();
             
 
@@ -41,7 +42,7 @@ class SocialAuthGoogleController extends Controller
             return redirect()->to('/home');
         } 
         catch (Exception $e) {
-            return 'error';
+            return $e;
         }
     }
 }

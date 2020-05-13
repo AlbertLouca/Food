@@ -12,7 +12,8 @@ public $ItemID;
 public $Price;
 public $Name;
 public $Quantity;
-protected $fillable = ['id','CategoryID','Name', 'Description','Price','Photo'];
+protected $fillable = ['quantity'];
+protected $hidden = ['order_id','item_id'];
        
 public function __construct($item){
 

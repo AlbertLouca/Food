@@ -13,7 +13,7 @@ class Foodcategory extends Migration
      */
     public function up()
     {
-        Schema::create('foodcategory', function (Blueprint $table) {
+        Schema::create('foodcategories', function (Blueprint $table) {
             $table->increments('id');
           
             $table->string('Name');
@@ -29,7 +29,7 @@ class Foodcategory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foodcategory');
+        Schema::dropIfExists('foodcategories');
         //
     }
 }

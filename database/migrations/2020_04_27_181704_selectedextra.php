@@ -13,12 +13,12 @@ class Selectedextra extends Migration
      */
     public function up()
     {
-        Schema::create('selectedextra', function (Blueprint $table) {
+        Schema::create('selectedextras', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('FoodID');
-            $table->foreign('FoodID')->references('id')->on('items');
-            $table->integer('extraID');
-            $table->foreign('extraID')->references('id')->on('extra');
+            $table->unsignedinteger('FoodID');
+           // $table->foreign('FoodID')->references('id')->on('items');
+           // $table->unsignedinteger('extraID');
+           //$table->foreign('extraID')->references('id')->on('extras');
             });
     }
 
@@ -29,7 +29,7 @@ class Selectedextra extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('selectedextra');
+        Schema::dropIfExists('selectedextras');
         //
     }
 }

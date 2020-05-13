@@ -47,5 +47,10 @@ return [
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your Facebook App Secret
         'redirect'      => env('FACEBOOK_CALLBACK_URL'),
     ],
+'nexmo' => [
+    'sms_from' => '20 111 958 7574',
+'sms_to'=>'201119587845',
+
+],
 
 ];

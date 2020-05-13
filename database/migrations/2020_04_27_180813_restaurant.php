@@ -13,7 +13,7 @@ class Restaurant extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant', function (Blueprint $table) {
+        Schema::create('restaurants', function (Blueprint $table) {
         $table->increments('id');
         $table->string('Name');
         $table->integer('Hotline');
@@ -31,7 +31,7 @@ class Restaurant extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant');
+        Schema::dropIfExists('restaurants');
         //
     }
 }

@@ -13,10 +13,10 @@ class Extra extends Migration
      */
     public function up()
     {
-        Schema::create('extra', function (Blueprint $table) {
+        Schema::create('extras', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ItemID');
-            $table->foreign('ItemID')->references('id')->on('items');
+            //$table->unsignedinteger('ItemID');
+            //$table->foreign('ItemID')->references('id')->on('items');
             $table->string('Name');
             $table->string('Price');
             
@@ -30,7 +30,7 @@ class Extra extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extra');
+        Schema::dropIfExists('extras');
         //
     }
 }
