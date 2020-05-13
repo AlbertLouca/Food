@@ -13,7 +13,7 @@ class Faq extends Migration
      */
     public function up()
     {
-        Schema::create('faqs', function (Blueprint $table) {
+        Schema::create('faq', function (Blueprint $table) {
             $table->increments('id');
             $table->text('Question');
             $table->text('Answer');
@@ -29,6 +29,6 @@ class Faq extends Migration
    
     public function down()
     {
-        Schema::dropIfExists('faqs');
+        Schema::dropIfExists('faq');
     }
 }

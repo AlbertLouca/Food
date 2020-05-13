@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     {
 
-       return view('index');
+       return view('home');
 
     }
 }
